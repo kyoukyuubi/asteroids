@@ -40,6 +40,11 @@ def main():
         for thing in asteroids:
             if thing.collision_check(player):
                 sys.exit("Game Over!")
+            for sprite in updatable:
+                if isinstance(sprite, Shot):
+                    if thing.collision_check(sprite):
+                        thing.split()
+                        sprite.kill()
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
