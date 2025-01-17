@@ -1,4 +1,5 @@
 import pygame
+from constants import *
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -26,3 +27,17 @@ class CircleShape(pygame.sprite.Sprite):
         if self.position.distance_to(circle_shape.position) < total_radius:
             return True
         return False
+    
+    def wrap_position(self):
+    # If we go off the right side, appear on left
+        if self.position.x > SCREEN_WIDTH:
+            self.position.x = 0
+    # If we go off the left side, appear on right
+        elif self.position.x < 0:
+            self.position.x = SCREEN_WIDTH
+    # If we go off the bottom, appear on top
+        if self.position.y > SCREEN_HEIGHT:
+            self.position.y = 0
+    # If we go off the top, appear on bottom
+        elif self.position.y < 0:
+            self.position.y = SCREEN_HEIGHT

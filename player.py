@@ -41,6 +41,7 @@ class Player(CircleShape):
             self.shoot()
 
         self.timer -= dt
+        self.wrap_position()
 
     def shoot(self):
         if self.timer < 0:
@@ -58,3 +59,4 @@ class Shot(CircleShape):
 
     def update(self, dt):
         self.position += self.velocity * dt
+        self.wrap_position()
